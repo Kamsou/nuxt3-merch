@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "start": "node .output/server/index.mjs",
+    "api": "json-server db.json --port 3001"
+  },
+  "devDependencies": {
+    "@heroicons/vue": "^1.0.5",
+    "autoprefixer": "^10.4.2",
+    "daisyui": "^1.25.4",
+    "nuxt3": "^3.0.0-27405808.7825e2a",
+    "postcss": "^8.4.6",
+    "tailwindcss": "^3.0.18"
+  }
+}
