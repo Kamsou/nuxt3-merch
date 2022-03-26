@@ -1,9 +1,17 @@
 <script setup>
+
+  const categories = useCategories()
+
+  const menuCategoryItems = categories.value.map(category => {
+    return {
+      path: '/category/' + category.id,
+      title: category.title
+    }
+  })
+
   const menuItems = [
     { path: '/', title: 'Accueil' },
-    { path: '/category/pony', title: 'Poneys' },
-    { path: '/category/horse', title: 'Chevaux' },
-    { path: '/category/other', title: 'Autres' },
+    ...menuCategoryItems
   ]
 </script>
 
