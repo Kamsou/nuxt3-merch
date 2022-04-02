@@ -8,11 +8,17 @@ export const useCart = () => {
     }, 0)
   })
 
+  const totalProducts = computed(() => {
+    return selectedProducts.value.reduce((acc, product) => {
+      return acc + product.quantity
+    }, 0)
+  })
+
   function addProductToCart(product, variantSelect) {
     const productIndexInCart = selectedProducts.value.findIndex(selectedProduct => selectedProduct.id === product.id)
 
     if (productIndexInCart === -1) {
-      selectedProduct.value.push({
+      selectedProducts.value.push({
         id: product.id,
         name: product.name,
         price: product.price,
@@ -22,21 +28,19 @@ export const useCart = () => {
         quantity: 1
       })
     } else {
-      const selectedProduct = selectedProduct.value[productIndexInCart]
-      selectedProduct.value[productIndexInCart].quantity++
+      const selectedProduct = selectedProducts.value[productIndexInCart]
+      selectedProduct.quantity++
 
       if (variantSelect !== null) {
         selectedProduct.variants.push(variantSelect.value)
       }
     }
-
-    console.log(cartSelectedProduct.value);
-    console.log(totalPrice.value);
   }
 
   return {
     addProductToCart,
     selectedProducts,
-    totalPrice
+    totalPrice,
+    totalProducts
   }
 }
